@@ -8,17 +8,19 @@ import org.apache.ibatis.session.SqlSession;
 import com.jsp.dao.MenuDAO;
 import com.jsp.dto.MenuVO;
 
-public class MenuDAOBeanImpl implements MenuDAOBean{
+public class MenuDAOBeanImpl implements MenuDAOBean {
 	
 	private SqlSession session;
-	private MenuDAO menuDAO;	
+	private MenuDAO menuDAO;
 	
 	public void setSession(SqlSession session) {
 		this.session = session;
 	}
+
 	public void setMenuDAO(MenuDAO menuDAO) {
 		this.menuDAO = menuDAO;
 	}
+	
 	
 	@Override
 	public List<MenuVO> selectMainMenu() throws SQLException {
@@ -39,5 +41,4 @@ public class MenuDAOBeanImpl implements MenuDAOBean{
 	public MenuVO selectMenuByMname(String mName) throws SQLException {
 		return menuDAO.selectMenuByMname(session, mName);
 	}
-
 }

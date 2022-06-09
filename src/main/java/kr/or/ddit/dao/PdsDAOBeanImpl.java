@@ -12,15 +12,17 @@ import com.jsp.dto.PdsVO;
 public class PdsDAOBeanImpl implements PdsDAOBean {
 
 	private SqlSession session;
-	private PdsDAO pdsDAO;	
+	private PdsDAO pdsDAO;
 	
+		
 	public void setSession(SqlSession session) {
 		this.session = session;
 	}
+
 	public void setPdsDAO(PdsDAO pdsDAO) {
 		this.pdsDAO = pdsDAO;
 	}
-	
+
 	@Override
 	public List<PdsVO> selectPdsCriteria(SearchCriteria cri) throws SQLException {
 		return pdsDAO.selectPdsCriteria(session, cri);
@@ -28,44 +30,43 @@ public class PdsDAOBeanImpl implements PdsDAOBean {
 
 	@Override
 	public int selectPdsCriteriaTotalCount(SearchCriteria cri) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		return pdsDAO.selectPdsCriteriaTotalCount(session, cri);
 	}
 
 	@Override
 	public PdsVO selectPdsByPno(int pno) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return pdsDAO.selectPdsByPno(session, pno);
 	}
 
 	@Override
 	public void insertPds(PdsVO pds) throws SQLException {
-		// TODO Auto-generated method stub
-
+		pdsDAO.insertPds(session, pds);
 	}
 
 	@Override
 	public void updatePds(PdsVO pds) throws SQLException {
-		// TODO Auto-generated method stub
-
+		pdsDAO.updatePds(session, pds);
 	}
 
 	@Override
 	public void deletePds(int pno) throws SQLException {
-		// TODO Auto-generated method stub
-
+		pdsDAO.deletePds(session, pno);
 	}
 
 	@Override
 	public void increaseViewCnt(int pno) throws SQLException {
-		// TODO Auto-generated method stub
-
+		pdsDAO.increaseViewCnt(session, pno);
 	}
 
 	@Override
 	public int getSeqNextValue() throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		return pdsDAO.getSeqNextValue(session);
+	}
+
+	@Override
+	public PdsVO selectPdsByImage(String imageFile) throws SQLException {
+		PdsVO pds = session.selectOne("Pds-Mapper.selectPdsByImage",imageFile);
+		return pds;
 	}
 
 }

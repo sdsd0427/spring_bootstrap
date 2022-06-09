@@ -9,18 +9,21 @@ import com.jsp.command.SearchCriteria;
 import com.jsp.dao.NoticeDAO;
 import com.jsp.dto.NoticeVO;
 
-public class NoticeDAOBeanImpl implements NoticeDAOBean{
+
+public class NoticeDAOBeanImpl implements NoticeDAOBean {
 
 	private SqlSession session;
-	private NoticeDAO noticeDAO;	
+	private NoticeDAO noticeDAO;
+	
 	
 	public void setSession(SqlSession session) {
 		this.session = session;
 	}
+
 	public void setNoticeDAO(NoticeDAO noticeDAO) {
 		this.noticeDAO = noticeDAO;
 	}
-	
+
 	@Override
 	public List<NoticeVO> selectSearchNoticeList(SearchCriteria cri) throws SQLException {
 		return noticeDAO.selectSearchNoticeList(session, cri);
@@ -59,6 +62,13 @@ public class NoticeDAOBeanImpl implements NoticeDAOBean{
 	@Override
 	public void deleteNotice(int nno) throws SQLException {
 		noticeDAO.deleteNotice(session, nno);
+	}
+
+	@Override
+	public NoticeVO selectNoticeByImage(String imageFile) throws SQLException {
+		NoticeVO notice 
+			= session.selectOne("Notice-Mapper.selectNoticeByImage",imageFile);
+		return notice;
 	}
 
 }

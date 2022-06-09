@@ -8,11 +8,16 @@ import org.apache.ibatis.session.SqlSession;
 import com.jsp.dao.AttachDAO;
 import com.jsp.dto.AttachVO;
 
-public class AttachDAOBeanImpl implements AttachDAOBean{
+public class AttachDAOBeanImpl implements AttachDAOBean {
 	
 	private SqlSession session;
-	private AttachDAO attachDAO;
+	private AttachDAO attachDAO; 
 	
+	
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
+
 	public void setAttachDAO(AttachDAO attachDAO) {
 		this.attachDAO = attachDAO;
 	}
@@ -30,19 +35,16 @@ public class AttachDAOBeanImpl implements AttachDAOBean{
 	@Override
 	public void insertAttach(AttachVO attach) throws SQLException {
 		attachDAO.insertAttach(session, attach);
-		
 	}
 
 	@Override
 	public void deleteAttach(int ano) throws SQLException {
 		attachDAO.deleteAttach(session, ano);
-		
 	}
 
 	@Override
 	public void deleteAllAttach(int pno) throws SQLException {
 		attachDAO.deleteAllAttach(session, pno);
-		
 	}
-	
+
 }
