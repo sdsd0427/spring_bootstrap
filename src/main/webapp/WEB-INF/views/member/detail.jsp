@@ -107,6 +107,28 @@ window.onload=function(){
 	MemberPictureThumb('<%=request.getContextPath()%>');
 }
 </script>
+
+<script>
+<c:if test="${from eq 'modify'}">
+	alert("${member.name}님의 정보가 수정되었습니다.");	
+// 	location.href='detail.do?id=${member.id}';
+	
+	if("${parentReload}" == "true"){
+		if(confirm('로그인 사용자의 정보가 수정되었습니다.\n현재 화면을 닫고 새로고침 하시겠습니까?')){
+			window.close();
+			window.opener.location.reload(true);
+		}	
+}
+
+</c:if>
+
+if(${from eq 'remove'}){
+	alert("${removeMember.name}님의 정보가 삭제되었습니다.");
+	if(${empty loginUser}){
+		window.opener.parent.location.href="<%=request.getContextPath()%>";
+	}
+	window.close();
+}
+</script>
   
 
-<%-- <%@ include file="/WEB-INF/include/footer.jsp" %> --%>

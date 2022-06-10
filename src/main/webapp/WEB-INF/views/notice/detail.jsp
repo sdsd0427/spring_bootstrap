@@ -82,5 +82,9 @@ function modify_go(nno){
 function remove_go(nno){
 	location.href="remove.do?nno=" + nno;
 }
+
+<c:if test="${from rq 'regist'}">
+	alert("${nno}번 공지사항이 등록되었습니다.");
+</c:if>
 </script>    
 </body>
