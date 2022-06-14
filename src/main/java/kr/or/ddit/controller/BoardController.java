@@ -58,7 +58,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/detail")
-	public ModelAndView detail(int bno, @RequestParam(defaultValue = "") String from, HttpServletRequest request, ModelAndView mnv) throws Exception{
+	public ModelAndView detail(int bno, @RequestParam(defaultValue = "") String from, ModelAndView mnv) throws Exception{
 		String url = "board/detail";
 		
 		BoardVO board = null;

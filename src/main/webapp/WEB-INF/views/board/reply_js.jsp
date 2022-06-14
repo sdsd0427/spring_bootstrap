@@ -39,7 +39,7 @@
 </li>
 {{#each pageNum}}
 <li class="paginate_button page-item {{signActive this}} ">
-	<a href="javascript:getPage('<%=request.getContextPath()%>/reply/list.do?bno=${board.bno}&page={{this}}',{{this}});" aria-controls="example2" data-dt-idx="1" tabindex="0" class="page-link">
+	<a href="javascript:getPage('<%=request.getContextPath()%>/replies/${board.bno}/{{this}}',{{this}});" aria-controls="example2" data-dt-idx="1" tabindex="0" class="page-link">
 		{{this}}
 	</a>
 </li>
@@ -61,7 +61,7 @@
 <script>
 var replyPage = 1;
 window.onload = function(){
-	getPage("<%=request.getContextPath()%>/reply/list.do?bno=${board.bno}&page="+replyPage);
+	getPage("<%=request.getContextPath()%>/replies/${board.bno}/"+replyPage);
 }
 function getPage(pageInfo, page) {
 	if(page) replyPage = page;
@@ -121,14 +121,14 @@ function replyRegist_go(){
 	}
 	
 	$.ajax({
-		url:"<%=request.getContextPath()%>/reply/regist.do",
+		url:"<%=request.getContextPath()%>/replies",
 		type:"post",
 		data:JSON.stringify(data),
 		contentType:'application/json',
 		success:function(data){
 			alert('댓글이 등록되었습니다. \n마지막 페이지로 이동합니다.');
 			replyPage = data; //페이지 이동
-			getPage("<%=request.getContextPath()%>/reply/list.do?bno=${board.bno}&page="+data);
+			getPage("<%=request.getContextPath()%>/replies/${board.bno}/"+data);
 			$('#newReplyText').val("");
 		},
 		error:function(error){
@@ -156,13 +156,16 @@ function replyModify_go(){
 			"replytext":replytext
 	}
 	$.ajax({
-		url:"<%=request.getContextPath()%>/reply/modify.do",
-		type:"post",
+		url:"<%=request.getContextPath()%>/replies/"+rno,
+		type:"PUT",
 		data:JSON.stringify(sendData),
 		contentType:'application/json',
+		headers:{
+			"X-HTTP-Method-Override":"PUT"
+		},
 		success:function(result){
 			alert('수정되었습니다.');
-			getPage("<%=request.getContextPath()%>/reply/list.do?bno=${board.bno}&page="+replyPage);
+			getPage("<%=request.getContextPath()%>/replies/${board.bno}/"+replyPage);
 		},
 		error:function(error){
 // 			alert('수정 실패했습니다.');
@@ -179,11 +182,14 @@ function replyRemove_go(){
 	//alert('dd');
 	var rno = $('.modal-title').text();
 	$.ajax({
-		url:"<%=request.getContextPath()%>/reply/remove.do?rno="+rno+"&page="+replyPage+"&bno=${board.bno}",
-		type:"get",
+		url:"<%=request.getContextPath()%>/replies/${board.bno}/"+rno+"/"+replyPage,
+		type:"DELETE",
+		headers:{
+			"X-HTTP-Method-Override":"DELETE"
+		},
 		success:function(page){
 			alert('삭제되었습니다.');
-			getPage("<%=request.getContextPath()%>/reply/list.do?bno=${board.bno}&page="+page);
+			getPage("<%=request.getContextPath()%>/replies/${board.bno}/"+page);
 			replyPage=page;
 		},
 		error:function(error){
