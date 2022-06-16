@@ -109,5 +109,15 @@ function submit_go(url, pno){
 	location.href=url+"?pno="+pno;
 }
 
+<c:if test="${from eq 'modify'}">
+	alert("수정되었습니다.");	
+</c:if>
+
+<c:if test="${from eq 'remove'}">
+	alert("삭제 되었습니다.");	
+	window.close();
+	window.opener.location.reload();
+</c:if>
+
 </script>    
  </body>

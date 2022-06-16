@@ -116,7 +116,13 @@
 			</div>
 		</div>
 	</section>
-
+<c:if test="${from eq 'regist' }">
+<script>
+	alert("게시글 등록이 성공했습니다.");
+	window.close();
+	window.opener.location.reload();
+</script>
+</c:if>  
 </body>
 
 

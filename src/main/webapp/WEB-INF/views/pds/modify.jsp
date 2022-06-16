@@ -43,17 +43,6 @@
 					<div class="card-body">
 						<form enctype="multipart/form-data" role="form" method="post" action="modify.do" name="modifyForm">
 							<input type="hidden" name="pno" value="${pds.pno }" />
-							<label for="end">공고마감일</label> 
-							<div class="col-sm-12 row" id="end">
-								<select  class="form-control col-sm-4" name="selectEnd" id="selectEnd" onchange="change_go();">
-									<option value="n" selected >마감일 없음</option>
-									<option value="y" >마감일 있음</option>
-								</select >
-								<div class="form-group col-sm-8">
-									<input type="date" id="endDate"
-										name="endDate" class="form-control" disabled>
-								</div>
-							</div>
 							<div class="form-group">
 								<label for="writer">작성자</label> 
 								<input type="text" id="writer" readonly
