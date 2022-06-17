@@ -1,4 +1,4 @@
-package kr.or.ddit.controller;
+package kr.or.ddit.controller.view;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -28,6 +28,7 @@ import com.jsp.service.PdsService;
 
 import kr.or.ddit.command.PdsModifyCommand;
 import kr.or.ddit.command.PdsRegistCommand;
+import kr.or.ddit.controller.rest.GetAttachesByMultipartFileAdapter;
 
 @Controller
 @RequestMapping("/pds")

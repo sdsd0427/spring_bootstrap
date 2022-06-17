@@ -19,6 +19,11 @@
 	<bean id="fileUploadPath" class="java.lang.String">
 		<constructor-arg value="${pds.upload}" />
 	</bean>
+
+	<!-- login user log path -->
+	<bean id="loginUserLogSavePath" class="java.lang.String">
+		<constructor-arg value="${login.user.log}" />
+	</bean>
 	
 
 	<!-- Repository -->

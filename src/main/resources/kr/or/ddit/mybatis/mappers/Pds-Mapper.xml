@@ -59,6 +59,11 @@
 		order by pno desc
 	</select>
 	
+	<select id="selectPdsByImage"  resultType="pds">
+		select * 
+		from pds 
+		where content like '%'||#{imageFile}||'%'
+	</select>
 	
 	<select id="selectPdsByPno"  resultType="pds">
 		select * 
