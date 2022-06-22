@@ -25,6 +25,10 @@
 		<constructor-arg value="${login.user.log}" />
 	</bean>
 	
+	<bean id="errorLogPath" class="java.lang.String">
+		<constructor-arg value="${error.log}" />
+	</bean>
+	
 
 	<!-- Repository -->
 	<bean id="memberDAO" class="com.jsp.dao.MemberDAOImpl" />
@@ -64,6 +68,9 @@
 		p:attachDAO-ref="attachDAO"
 		p:session-ref="sqlSession"	
 	 />
+	 <bean id="loginUserLogDAO" class="kr.or.ddit.dao.LoginUserLogDAOImpl"
+		p:session-ref="sqlSession"	
+	 />
 	 
 	<!-- Service -->
 	<bean id="memberService" class="kr.or.ddit.service.MemberServiceImpl"
@@ -86,6 +93,9 @@
 	<bean id="replyService" class="kr.or.ddit.service.ReplyServiceImpl"
 		p:memberDAOBean-ref="memberDAOBean"
 		p:replyDAOBean-ref="replyDAOBean"
+	/>
+	<bean id="loginUserLogService" class="kr.or.ddit.service.LoginUserLogServiceImpl"
+		p:loginUserLogDAO-ref="loginUserLogDAO"
 	/>
 
 </beans>

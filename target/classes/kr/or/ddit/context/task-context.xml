@@ -18,7 +18,7 @@
 		<scheduled ref="memberPictureRemoveTask" 
 				   method="removePicture"
 				   cron="*/10 * * * * *"
-				/>
+		/>
 	</scheduled-tasks>
 
 	<beans:bean id="summernoteImageRemoveTask"
@@ -33,7 +33,20 @@
 		<scheduled ref="summernoteImageRemoveTask" 
 				   method="fileRemove"
 				   cron="*/10 * * * * *"
-				/>
+		/>
+	</scheduled-tasks>
+	
+	<beans:bean id="loginUserLogTask"
+				class="kr.or.ddit.scheduler.LoginUserLogTaskScheduler"
+				p:logService-ref="loginUserLogService"
+				p:savePath-ref="loginUserLogSavePath"
+	/>
+	<scheduler id="LoginUserLogScheduler"/>
+	<scheduled-tasks scheduler="LoginUserLogScheduler">
+		<scheduled ref="loginUserLogTask" 
+				   method="loginUserLogToDataBase"
+				   cron="*/10 * * * * *"
+		/>
 	</scheduled-tasks>
 
 </beans:beans>

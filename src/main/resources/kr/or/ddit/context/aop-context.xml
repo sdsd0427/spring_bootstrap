@@ -11,11 +11,12 @@
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="*" propagation="REQUIRED"/>
-			<tx:method name="regist" rollback-for="Exception"/>
-			<tx:method name="modify" rollback-for="Exception"/>
-			<tx:method name="remove" rollback-for="Exception"/>
-			<tx:method name="read" rollback-for="Exception"/>
-			<tx:method name="get" rollback-for="Exception"/>
+			<tx:method name="regist*" rollback-for="Exception"/>
+			<tx:method name="write*" rollback-for="Exception"/>
+			<tx:method name="modify*" rollback-for="Exception"/>
+			<tx:method name="remove*" rollback-for="Exception"/>
+			<tx:method name="read*" rollback-for="Exception"/>
+			<tx:method name="get*" rollback-for="Exception"/>
 			<tx:method name="get*ForModify" read-only="true"/>
 		</tx:attributes>
 	</tx:advice>
